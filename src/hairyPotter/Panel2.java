@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -46,8 +47,8 @@ public class Panel2 extends JPanel implements ActionListener, Runnable {
 	        Button[2].setMaximumSize(new Dimension(100,30));
 	        buttonPanel.add(Button[2], BorderLayout.WEST);
 	//        this.add(buttonPanel, BorderLayout.WEST);
-	        
-	        
+			
+			
 	        this.add(buttonPanel, BorderLayout.WEST);
 	        buttonPanel.setPreferredSize(new Dimension(200,500));
 	        buttonPanel.setVisible(true);
@@ -57,6 +58,11 @@ public class Panel2 extends JPanel implements ActionListener, Runnable {
 		    data=new String[]{"North Hall", "South Hall"};
 		    buttonPanel.add(options, BorderLayout.AFTER_LAST_LINE);
 		    
+	 }
+
+	 public void paintComponent(Graphics g)
+	 {
+		 super.paintComponent(g);    
 	 }
 
     

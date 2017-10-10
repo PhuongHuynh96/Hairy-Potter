@@ -12,7 +12,7 @@ import javax.swing.*;
 public class Panel extends JPanel implements ActionListener, Runnable
 {
     private BufferedImage img;
-    private JLabel map;
+    private JLabel map, gary;
     private int countDown;
 
     public Panel()
@@ -20,26 +20,21 @@ public class Panel extends JPanel implements ActionListener, Runnable
         this.setBackground(Color.BLACK);
         setLayout(new FlowLayout(FlowLayout.CENTER));
         setFocusable(true);
-        // try
-        // {
-        //     img = ImageIO.read(new File("../Map.png"));
-        // }
-        // catch(IOException e)
-        // {
-        //     System.out.println("No Image Found!!");
-        //     e.printStackTrace();
-        // }
-        ImageIcon icon = new ImageIcon("Map.png");
+
+        gary = new JLabel("Gary");
+        gary.setForeground(Color.MAGENTA);
+        gary.setBounds(50, 50, 100, 100);
+        this.add(gary);
+        
+        ImageIcon icon = new ImageIcon("../Map.png");
         map = new JLabel(icon);
         map.setBackground(Color.BLACK);
         JScrollPane jsp = new JScrollPane(map, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         jsp.setPreferredSize(new Dimension(1230,550));
         jsp.setViewportView(map);
         this.add(jsp);
-        //this.add(map);
+
         
-        // making button arrays
-        JButton Button[] = new JButton[4];
    /*     
         //making JList to display map options 
         String[] data = {"George Allen Field", "Japanese Garden", "Student Parking",
@@ -55,11 +50,7 @@ public class Panel extends JPanel implements ActionListener, Runnable
 
     public void paintComponent(Graphics g)
     {
-        super.paintComponent(g);
-        g.setColor(Color.MAGENTA);
-        g.drawString("Gary", 50, 50);
-        g.drawRect(50, 50, 500, 500);
-        
+        super.paintComponent(g);    
     }
 
 	@Override

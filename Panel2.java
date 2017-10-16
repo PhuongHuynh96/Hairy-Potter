@@ -27,7 +27,6 @@ import javax.swing.SwingConstants;
 public class Panel2 extends JPanel implements ActionListener, Runnable {
 	private int countDown;
 	String[] data = new String[] { "North Hall", "South Hall" };
-	Labels x = new Labels();
 	JPanel buttonPanel = new JPanel();
 //	Map<String, ArrayList<String>> location = new HashMap<String, ArrayList<String>>();
 

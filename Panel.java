@@ -24,8 +24,6 @@ public class Panel extends JPanel implements ActionListener, Runnable
     private int countDown;
     private JLabel m;
 
-    Labels x = new Labels();
-
     public Panel()
     {
         this.setBackground(Color.BLACK);

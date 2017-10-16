@@ -43,6 +43,11 @@ public class Panel extends JPanel implements ActionListener, Runnable
         pearl.setFont(new Font("Serif", Font.BOLD, 40) );
         pearl.setBounds(610, 980, 100, 100);
        
+        m=new JLabel("Marker");
+        m.setForeground(Color.CYAN);
+        m.setFont(new Font("Serif", Font.BOLD, 40));
+        m.setBounds(610, 950, 200, 200);
+
         
         ImageIcon icon = new ImageIcon("../Map.png");
         map = new JLabel(icon);
@@ -52,13 +57,7 @@ public class Panel extends JPanel implements ActionListener, Runnable
         jsp.setViewportView(map);
         this.add(jsp);
         
-        
-        
- //       map.add(gary);
-        m=new JLabel("Marker");
-        m.setForeground(Color.CYAN);
-        m.setFont(new Font("Serif", Font.BOLD, 40));
-        m.setBounds(610, 950, 200, 200);
+       
         map.add(gary);
         map.add(patrick);
         map.add(pearl);

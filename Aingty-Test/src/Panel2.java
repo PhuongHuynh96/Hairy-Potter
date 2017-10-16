@@ -1,20 +1,10 @@
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Graphics;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.image.*;
+import javax.swing.*;
+import java.util.*;
 
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JList;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
+
 
 /**
  * JList and Buttons along with their actions
@@ -24,16 +14,60 @@ import javax.swing.SwingConstants;
  */
 public class Panel2 extends JPanel implements ActionListener, Runnable {
 	private int countDown;
-	String[] data = new String[] { "North Hall", "South Hall" };
-	JPanel buttonPanel = new JPanel();
-//	Map<String, ArrayList<String>> location = new HashMap<String, ArrayList<String>>();
+	String[] data;
+
+	private BufferedImageOp img;
+    private JLabel map;
+	private JLabel gary;
+	private JLabel patrick;
+	private JLabel pearl;
+	private JLabel m;
+	JButton Button[] = new JButton[4];
 
 	public Panel2() {
 
 		this.setBackground(Color.GREEN);
-		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
 		this.setLayout(new BorderLayout());
 		
+		gary = new JLabel("Gary");
+        gary.setForeground(Color.BLUE);
+        gary.setFont(new Font("Serif", Font.BOLD, 40) );
+        gary.setBounds(610, 930, 100, 100);
+        
+        patrick = new JLabel("Patrick");
+        patrick.setForeground(Color.PINK);
+        patrick.setFont(new Font("Serif", Font.BOLD, 40) );
+        patrick.setBounds(610, 1000, 200, 200);
+        
+        pearl = new JLabel("Pearl");
+        pearl.setForeground(Color.DARK_GRAY);
+        pearl.setFont(new Font("Serif", Font.BOLD, 40) );
+        pearl.setBounds(610, 980, 100, 100);
+       
+        m=new JLabel("Marker");
+        m.setForeground(Color.CYAN);
+        m.setFont(new Font("Serif", Font.BOLD, 40));
+        m.setBounds(610, 950, 200, 200);
+
+        
+        ImageIcon icon = new ImageIcon("../Map.png");
+        map = new JLabel(icon);
+        map.setBackground(Color.BLACK);
+        JScrollPane jsp = new JScrollPane(map, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        jsp.setPreferredSize(new Dimension(1230,550));
+		jsp.setViewportView(map);
+        this.add(jsp, BorderLayout.NORTH);
+        
+       
+        map.add(gary);
+        map.add(patrick);
+        map.add(pearl);
+        map.add(m);
+        //map.revalidate();    
+
+
+		JPanel control = new JPanel(new GridLayout(3,1));
+		//control.setSize(1000,1000);
 		//Hashmap of location combinations 
 		Map<String, ArrayList<String>> location = new HashMap<String, ArrayList<String>>();
 		location.put("ECS 308", new ArrayList<String>(Arrays.asList("South Hall")));
@@ -56,33 +90,41 @@ public class Panel2 extends JPanel implements ActionListener, Runnable {
 
 		data = new String[] { "South Hall" };
 		JList<String> options = new JList<String>(data);
-		setFocusable(true);
+		
 
 		// making button arrays
-		JButton Button[] = new JButton[4];
 		Button[0] = new JButton("Draw Card");
 		Button[0].setVisible(true);
-		Button[0].setMaximumSize(new Dimension(100, 30));
-		Button[0].setHorizontalAlignment(SwingConstants.LEFT);
-		buttonPanel.add(Button[0]);
+		Button[0].setSize(100,10);
+		//Button[0].setMaximumSize(new Dimension(100, 30));
+		//Button[0].setHorizontalAlignment(SwingConstants.LEFT);
 
 		Button[1] = new JButton("Move");
 		Button[1].setVisible(true);
-		Button[1].setMaximumSize(new Dimension(100, 30));
-		buttonPanel.add(Button[1], BorderLayout.WEST);
+		Button[1].setSize(100,10);
 
 		Button[2] = new JButton("Play Card");
 		Button[2].setVisible(true);
-		Button[2].setMaximumSize(new Dimension(100, 30));
-		buttonPanel.add(Button[2], BorderLayout.WEST);
+		Button[2].setSize(100,10);
 
-		this.add(buttonPanel, BorderLayout.WEST);
-		buttonPanel.setPreferredSize(new Dimension(200, 500));
-		buttonPanel.setVisible(true);
-		setVisible(true);
-		setPreferredSize(new Dimension(1200, 500));
+		// Setting button background to Black
+		Button[0].setBackground(Color.BLACK);
+		Button[1].setBackground(Color.BLACK);
+		Button[2].setBackground(Color.BLACK);
 
-		buttonPanel.add(options, BorderLayout.AFTER_LAST_LINE);
+
+		// Allowing user to click on button
+		Button[0].addActionListener(this);
+		Button[1].addActionListener(this);
+		Button[2].addActionListener(this);
+
+		control.add(Button[0]);
+		control.add(Button[1]);
+		control.add(Button[2]);
+		control.setSize(new Dimension(10, 10));
+		this.add(control, BorderLayout.WEST);
+
+
 
 	}
 

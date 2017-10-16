@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 
@@ -6,16 +7,17 @@ import javax.swing.*;
 
 public class Frame extends JFrame
 {
-    private Panel panel;
+    // private Panel panel;
 
     public Frame()
     {
         setBounds(10, 10, 1250, 880);
-        this.setLayout(new FlowLayout(FlowLayout.CENTER));
-        panel = new Panel();
-        getContentPane().add(panel);
+        //this.setLayout(new FlowLayout(FlowLayout.CENTER));
+        // panel = new Panel();
+        // getContentPane().add(panel);
         Panel2 control = new Panel2();
-        getContentPane().add(control);
+        add(control, BorderLayout.CENTER);
+        //getContentPane().add(control);
 
  //       panel.getContentPane().add(control,BorderLayout.SOUTH);
  /*       
@@ -36,7 +38,7 @@ public class Frame extends JFrame
         setVisible(true);
         setResizable(false);
         
-        Thread t = new Thread(panel);
+        Thread t = new Thread(control);
         t.start();
     }
 }

@@ -4,7 +4,11 @@ import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.JLabel;
-
+/**
+ * makes the markers for the game board and updates the positions of each player
+ * @author Phuong Huynh
+ *
+ */
 public class Labels {
 	
 	JLabel gary, patrick, pearl;

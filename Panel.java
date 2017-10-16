@@ -18,9 +18,9 @@ public class Panel extends JPanel implements ActionListener, Runnable
 {
     private BufferedImage img;
     private JLabel map;
-//	private JLabel gary;
-//	private JLabel patrick;
-//	private JLabel pearl;
+	private JLabel gary;
+	private JLabel patrick;
+	private JLabel pearl;
     private int countDown;
     private JLabel m;
 
@@ -31,7 +31,7 @@ public class Panel extends JPanel implements ActionListener, Runnable
         this.setBackground(Color.BLACK);
         setLayout(new FlowLayout(FlowLayout.CENTER));
         setFocusable(true);
-/*
+
         gary = new JLabel("Gary");
         gary.setForeground(Color.BLUE);
         gary.setFont(new Font("Serif", Font.BOLD, 40) );
@@ -46,7 +46,7 @@ public class Panel extends JPanel implements ActionListener, Runnable
         pearl.setForeground(Color.DARK_GRAY);
         pearl.setFont(new Font("Serif", Font.BOLD, 40) );
         pearl.setBounds(610, 980, 100, 100);
-       */
+       
         
         ImageIcon icon = new ImageIcon("Map.png");
         map = new JLabel(icon);
@@ -63,9 +63,9 @@ public class Panel extends JPanel implements ActionListener, Runnable
         m.setForeground(Color.CYAN);
         m.setFont(new Font("Serif", Font.BOLD, 40));
         m.setBounds(610, 950, 200, 200);
-        map.add(x.getGary());
-        map.add(x.getPatrick());
-        map.add(x.getPearl());
+        map.add(gary);
+        map.add(patrick);
+        map.add(pearl);
         map.add(m);
         map.revalidate();    
     }

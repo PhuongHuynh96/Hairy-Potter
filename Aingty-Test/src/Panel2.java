@@ -68,7 +68,6 @@ public class Panel2 extends JPanel implements ActionListener, Runnable {
 
 		JPanel control = new JPanel();
 		control.setLayout(new BoxLayout(control, BoxLayout.LINE_AXIS));
-		//control.setSize(1000,1000);
 		//Hashmap of location combinations 
 		Map<String, ArrayList<String>> location = new HashMap<String, ArrayList<String>>();
 		location.put("ECS 308", new ArrayList<String>(Arrays.asList("South Hall")));
@@ -122,6 +121,7 @@ public class Panel2 extends JPanel implements ActionListener, Runnable {
 		control.setAlignmentX(Component.LEFT_ALIGNMENT);
 		this.add(Box.createRigidArea(new Dimension(0,10)));
 		this.add(control);
+		this.add(options);
 		this.add(Box.createRigidArea(new Dimension(0,200)));
 
 

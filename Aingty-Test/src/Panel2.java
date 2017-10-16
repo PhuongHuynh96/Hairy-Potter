@@ -27,7 +27,7 @@ public class Panel2 extends JPanel implements ActionListener, Runnable {
 	public Panel2() {
 
 		this.setBackground(Color.GREEN);
-		this.setLayout(new BorderLayout());
+		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		
 		gary = new JLabel("Gary");
         gary.setForeground(Color.BLUE);
@@ -54,11 +54,11 @@ public class Panel2 extends JPanel implements ActionListener, Runnable {
         map = new JLabel(icon);
         map.setBackground(Color.BLACK);
         JScrollPane jsp = new JScrollPane(map, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        jsp.setPreferredSize(new Dimension(1230,550));
+        jsp.setPreferredSize(new Dimension(1000,550));
 		jsp.setViewportView(map);
-        this.add(jsp, BorderLayout.NORTH);
-        
-       
+		this.add(Box.createRigidArea(new Dimension(0,5)));
+		this.add(jsp);
+
         map.add(gary);
         map.add(patrick);
         map.add(pearl);
@@ -66,7 +66,8 @@ public class Panel2 extends JPanel implements ActionListener, Runnable {
         //map.revalidate();    
 
 
-		JPanel control = new JPanel(new GridLayout(3,1));
+		JPanel control = new JPanel();
+		control.setLayout(new BoxLayout(control, BoxLayout.LINE_AXIS));
 		//control.setSize(1000,1000);
 		//Hashmap of location combinations 
 		Map<String, ArrayList<String>> location = new HashMap<String, ArrayList<String>>();
@@ -95,17 +96,13 @@ public class Panel2 extends JPanel implements ActionListener, Runnable {
 		// making button arrays
 		Button[0] = new JButton("Draw Card");
 		Button[0].setVisible(true);
-		Button[0].setSize(100,10);
-		//Button[0].setMaximumSize(new Dimension(100, 30));
-		//Button[0].setHorizontalAlignment(SwingConstants.LEFT);
+		
 
 		Button[1] = new JButton("Move");
 		Button[1].setVisible(true);
-		Button[1].setSize(100,10);
 
 		Button[2] = new JButton("Play Card");
 		Button[2].setVisible(true);
-		Button[2].setSize(100,10);
 
 		// Setting button background to Black
 		Button[0].setBackground(Color.BLACK);
@@ -121,8 +118,11 @@ public class Panel2 extends JPanel implements ActionListener, Runnable {
 		control.add(Button[0]);
 		control.add(Button[1]);
 		control.add(Button[2]);
-		control.setSize(new Dimension(10, 10));
-		this.add(control, BorderLayout.WEST);
+		control.setPreferredSize(new Dimension(100,30));
+		control.setAlignmentX(Component.LEFT_ALIGNMENT);
+		this.add(Box.createRigidArea(new Dimension(0,10)));
+		this.add(control);
+		this.add(Box.createRigidArea(new Dimension(0,200)));
 
 
 
@@ -131,6 +131,16 @@ public class Panel2 extends JPanel implements ActionListener, Runnable {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 	}
+
+
+
+
+
+
+
+
+
+
 
 	@Override
 	public void run() {

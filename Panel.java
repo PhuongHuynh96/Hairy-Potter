@@ -1,109 +1,62 @@
 package hairyPotter;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.io.*;
-import java.util.*;
-import javax.imageio.*;
-import javax.swing.*;
+import java.io.File;
+import java.io.IOException;
 
-/**
- * Displays the map and the markers (players on the map)
- * @author Phuong Huynh
- *
- */
-public class Panel extends JPanel implements ActionListener, Runnable
-{
-    private BufferedImage img;
-    private JLabel map;
-	private JLabel gary;
-	private JLabel patrick;
-	private JLabel pearl;
-    private int countDown;
-    private JLabel m;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
-    Labels x = new Labels();
+public class Panel extends JPanel {
 
-    public Panel()
-    {
-        this.setBackground(Color.BLACK);
-        setLayout(new FlowLayout(FlowLayout.CENTER));
-        setFocusable(true);
-        Player gary = new Player("gary");
-        Player patrick = new Player("patrick");
-        Player pearl = new Player("pearl");
-/*
-        gary = new JLabel("Gary");
-        gary.setForeground(Color.BLUE);
-        gary.setFont(new Font("Serif", Font.BOLD, 40) );
-        gary.setBounds(610, 930, 100, 100);
-        
-        patrick = new JLabel("Patrick");
-        patrick.setForeground(Color.PINK);
-        patrick.setFont(new Font("Serif", Font.BOLD, 40) );
-        patrick.setBounds(610, 1000, 200, 200);
-        
-        pearl = new JLabel("Pearl");
-        pearl.setForeground(Color.DARK_GRAY);
-        pearl.setFont(new Font("Serif", Font.BOLD, 40) );
-        pearl.setBounds(610, 980, 100, 100);
-       
-  */      
-        ImageIcon icon = new ImageIcon("Map.png");
-        map = new JLabel(icon);
-        map.setBackground(Color.BLACK);
-        JScrollPane jsp = new JScrollPane(map, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        jsp.setPreferredSize(new Dimension(1230,550));
-        jsp.setViewportView(map);
-        this.add(jsp);
-        
-        
-        
- //       map.add(gary);
-        m=new JLabel("Marker");
-        m.setForeground(Color.CYAN);
-        m.setFont(new Font("Serif", Font.BOLD, 40));
-        m.setBounds(610, 950, 200, 200);
-        map.add(gary);
-        map.add(patrick);
-        map.add(pearl);
-        map.add(m);
-        map.revalidate();    
-    }
+	// private JLabel map;
+	private BufferedImage map;
+	private Player p1, p2, p3;
 
-    @Override
-    public void paintComponent(Graphics g)
-    {
-        super.paintComponent(g);
-        
-        
-    }
-    
+	public Panel(Player p1, Player p2, Player p3) {
+		this.p1 = p1;
+		this.p2 = p2;
+		this.p3 = p3;
+		//this.add(p1.getPlayer());
+		//this.add(p2.getPlayer());
+		//this.add(p3.getPlayer());
+		try {
+			map = ImageIO.read(new File("src/Map.png"));
+		} catch (IOException e) {
+			System.out.println("Hi");
+		}
 
-	@Override
-    public void run() 
-    {
-        while(countDown > 0)
-        {
-            try
-            {
-                Thread.sleep(50);
-                repaint();
-            }
-            catch(InterruptedException e)
-            {
-                System.out.println("Error in the label reading.");
-            }
-        }
+		this.setPreferredSize(new Dimension(map.getWidth(), map.getHeight()));
+		/*
+		 * // ImageIcon icon = new ImageIcon("Map.png"); // map = new
+		 * JLabel(icon); // map.setBackground(Color.BLACK); / JScrollPane jsp =
+		 * new JScrollPane(map, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+		 * JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); jsp.setPreferredSize(new
+		 * Dimension(1230,550));
+		 * jsp.getVerticalScrollBar().setUnitIncrement(16);
+		 * jsp.setViewportView(map); // this.add(Box.createRigidArea(new
+		 * Dimension(0,5))); this.add(jsp);
+		 */
 	}
 
-	@Override
-    public void actionPerformed(ActionEvent e) 
-    {
-        	
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		g.drawImage(map, 0, 0, this);
+		g.setColor(Color.MAGENTA);
+		Font currentFont = g.getFont();
+		Font newFont = currentFont.deriveFont(currentFont.getSize() * 3.0F);
+		g.setFont(newFont);
+		//g.drawString("", 0, 0);
+		g.drawString(p1.getName(), (int) p1.getPoint().getX(), (int) (p1.getPoint().getY()));
+		g.drawString(p2.getName(), (int) p2.getPoint().getX(), (int) p2.getPoint().getY());
+		g.drawString(p3.getName(), (int) p3.getPoint().getX(), (int) p3.getPoint().getY());
 	}
 
 }
-

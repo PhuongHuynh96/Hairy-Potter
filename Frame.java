@@ -1,5 +1,6 @@
 package hairyPotter;
 
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -8,16 +9,18 @@ import javax.swing.*;
 
 public class Frame extends JFrame
 {
-    private Panel panel;
+ //   private Panel panel;
 
     public Frame()
-    {
+    {	
         setBounds(10, 10, 1250, 880);
-        this.setLayout(new FlowLayout(FlowLayout.CENTER));
+      
+        //this.setLayout(new FlowLayout(FlowLayout.CENTER));
 //        panel = new Panel();
 //        getContentPane().add(panel);
         Panel2 control = new Panel2();
-        getContentPane().add(control);
+        this.add(control);
+        //getContentPane().add(control);
 
  //       panel.getContentPane().add(control,BorderLayout.SOUTH);
  /*       
@@ -35,11 +38,14 @@ public class Frame extends JFrame
    */     
         setTitle("Hairy Potter!");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(1920,1080);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
         setVisible(true);
         setResizable(false);
         
-        Thread t = new Thread(panel);
+        Thread t = new Thread(control);
         t.start();
     }
 }
+
 

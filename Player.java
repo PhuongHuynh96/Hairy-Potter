@@ -1,5 +1,7 @@
 package hairyPotter;
 
+
+
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.*;
@@ -8,7 +10,7 @@ import java.util.*;
 
 public class Player {
 	
-    private JLabel character;
+   // private JLabel character;
     private String name;
     private String locale;
 
@@ -18,9 +20,11 @@ public class Player {
 
 	
 	public Player(String x){
-        character = new JLabel(x);
+       // character = new JLabel(x);
+		name=x;
         locale = "ECS 308";
-		if (x.equalsIgnoreCase("Gary")){
+		/*
+        if (x.equalsIgnoreCase("Gary")){
             name = x;
             character.setForeground(Color.BLUE);
             character.setFont(new Font("Serif", Font.BOLD, 30) );
@@ -38,9 +42,9 @@ public class Player {
 	        character.setFont(new Font("Serif", Font.BOLD, 30) );
 	        character.setBounds(610, 980, 100, 100);
         }
-        
+        */
         location.put("ECS 308", new String[] {"South Hall"});
-		location.put("South Hall", new String[] {"ECS 302","EAT Club","CECS Conference Room","East Walkway","North Hall", "Lactation Lounge"});
+		location.put("South Hall", new String[] {"ECS 308","ECS 302","EAT Club","CECS Conference Room","East Walkway","North Hall", "Lactation Lounge"});
 		location.put("Lactation Lounge", new String[] {"South Hall"});
 		location.put("CECS Conference Room", new String[] {"South Hall"});
 		location.put("EAT Club", new String[] {"South Hall"});
@@ -79,9 +83,9 @@ public class Player {
         
 	}
     
-    public JLabel getPlayer()
+    public Player getPlayer()
     {
-        return this.character;
+        return this;
     }
 
     public void setLocation(String x)
@@ -98,23 +102,36 @@ public class Player {
     {
         return this.locale;
     }
-
-    public void movePlayer(){
+    public Point getPoint() {
+    	if(name.equalsIgnoreCase("gary")){
+            return updateLocation.get(locale)[0];
+        }
+        else if(name.equalsIgnoreCase("pearl")){
+        	return updateLocation.get(locale)[1];
+        }
+        else {
+        	return updateLocation.get(locale)[2];
+        }
+    }
+    public String getName() {
+    	return name;
+    }
+ /*   public void movePlayer(){
         if(name.equalsIgnoreCase("gary")){
             int x = (int) updateLocation.get(this.locale)[0].getX();
             int y = (int) updateLocation.get(this.locale)[0].getY();
-            character.setBounds(x,y,100,100);
+            //character.setBounds(x,y,100,100);
         }
         else if(name.equalsIgnoreCase("pearl")){
         	int x = (int) updateLocation.get(this.locale)[2].getX();
             int y = (int) updateLocation.get(this.locale)[2].getY();
-            character.setBounds(x,y,100,100);
+            //character.setBounds(x,y,100,100);
         }
         else if(name.equalsIgnoreCase("patrick")){
         	int x = (int) updateLocation.get(this.locale)[1].getX();
             int y = (int) updateLocation.get(this.locale)[1].getY();
-            character.setBounds(x,y,100,100);
+           // character.setBounds(x,y,100,100);
         }
     }
-
+*/
 }

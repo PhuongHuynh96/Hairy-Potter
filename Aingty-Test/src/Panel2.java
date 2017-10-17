@@ -30,7 +30,7 @@ public class Panel2 extends JPanel implements Runnable {
 	public Panel2() {
 
 		this.setBackground(Color.GREEN);
-		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+		this.setLayout(new BorderLayout());
 		
 		gary = new Player("Gary");
 		patrick = new Player("Patrick");
@@ -45,7 +45,7 @@ public class Panel2 extends JPanel implements Runnable {
         jsp.setPreferredSize(new Dimension(1000,550));
 		jsp.setViewportView(map);
 		this.add(Box.createRigidArea(new Dimension(0,5)));
-		this.add(jsp);
+		this.add(jsp, BorderLayout.NORTH);
 
         map.add(gary.getPlayer());
         map.add(patrick.getPlayer());
@@ -54,7 +54,7 @@ public class Panel2 extends JPanel implements Runnable {
 
 
 		JPanel control = new JPanel();
-		control.setLayout(new BoxLayout(control, BoxLayout.LINE_AXIS));
+		control.setLayout(new BoxLayout(control, BoxLayout.Y_AXIS));
 
 		options = new JList(model);
 		// mouseListener = new MouseAdapter() {
@@ -102,8 +102,8 @@ public class Panel2 extends JPanel implements Runnable {
 		control.setPreferredSize(new Dimension(100,30));
 		control.setAlignmentX(Component.LEFT_ALIGNMENT);
 		this.add(Box.createRigidArea(new Dimension(0,10)));
-		this.add(control);
-		this.add(options);
+		this.add(control, BorderLayout.WEST);
+		this.add(options, BorderLayout.AFTER_LAST_LINE);
 		this.add(Box.createRigidArea(new Dimension(0,200)));
 
 

@@ -2,6 +2,7 @@ package hairyPotter;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Point;
 
 import javax.swing.JLabel;
 /**
@@ -12,6 +13,8 @@ import javax.swing.JLabel;
 public class Labels {
 	
 	JLabel gary, patrick, pearl;
+	Point location = new Point();
+
 	public Labels(){
 		
 	gary = new JLabel("Gary");
@@ -43,28 +46,29 @@ public class Labels {
 		return pearl;
 	}
 	
-	public int getGaryX(){
-		return gary.getX();
+	public Point getGaryLoc(){
+		return gary.getLocationOnScreen();
 	}
 	
-	public int getGaryY(){
-		return gary.getY();
+	public Point getPatrickLoc(){
+		return patrick.getLocationOnScreen();
 	}
 	
-	public int getPatrickX(){
-		return patrick.getX();
+	public Point getPearlLoc(){
+		return pearl.getLocationOnScreen();
 	}
 	
-	public int getPatrickY(){
-		return patrick.getY();
+	public void changeGary(Point x ){
+		gary.setLocation(x);
 	}
 	
-	public int getPearlX(){
-		return pearl.getX();
+	public void changePatrick(Point x){
+		patrick.setLocation(x);
 	}
 	
-	public int getPearlY(){
-		return pearl.getY();
+	public void changePearl(Point x){
+		pearl.setLocation(x);
 	}
 	
+		
 }

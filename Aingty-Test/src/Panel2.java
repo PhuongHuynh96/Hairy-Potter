@@ -22,8 +22,11 @@ public class Panel2 extends JPanel implements ActionListener, Runnable {
 	private JLabel patrick;
 	private JLabel pearl;
 	private JLabel m;
-	JButton Button[] = new JButton[4];
+	private JButton Button[] = new JButton[4];
+	private JList<String> options;
+	private MouseListener mouseListener;
 
+	private static String option1;
 	public Panel2() {
 
 		this.setBackground(Color.GREEN);
@@ -88,9 +91,23 @@ public class Panel2 extends JPanel implements ActionListener, Runnable {
 		location.put("Forbidden Parking", new ArrayList<String>(Arrays.asList("East Walkway")));
 		location.put("Rec Center", new ArrayList<String>(Arrays.asList("West Walkway")));
 
-		data = new String[] { "South Hall" };
-		JList<String> options = new JList<String>(data);
-		
+		data = new String[] { "South Hall", "North Hall" };
+		options = new JList<String>(data);
+		mouseListener = new MouseAdapter() {
+			public void mouseClicked(MouseEvent mouseEvent) {
+			  JList theList = (JList) mouseEvent.getSource();
+			  if (mouseEvent.getClickCount() == 1) {
+				int index = theList.locationToIndex(mouseEvent.getPoint());
+				if (index >= 0) {
+				   Object o = theList.getModel().getElementAt(index);
+				   option1 = o.toString();
+				  //System.out.println("Double-clicked on: " + o.toString());
+				}
+			  }
+			}
+		  };
+		  options.addMouseListener(mouseListener);
+		  System.out.println(option1);
 
 		// making button arrays
 		Button[0] = new JButton("Draw Card");
@@ -130,10 +147,11 @@ public class Panel2 extends JPanel implements ActionListener, Runnable {
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		
+		
 	}
 
-
-
+	
 
 
 

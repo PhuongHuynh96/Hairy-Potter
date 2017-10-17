@@ -31,7 +31,10 @@ public class Panel extends JPanel implements ActionListener, Runnable
         this.setBackground(Color.BLACK);
         setLayout(new FlowLayout(FlowLayout.CENTER));
         setFocusable(true);
-
+        Player gary = new Player("gary");
+        Player patrick = new Player("patrick");
+        Player pearl = new Player("pearl");
+/*
         gary = new JLabel("Gary");
         gary.setForeground(Color.BLUE);
         gary.setFont(new Font("Serif", Font.BOLD, 40) );
@@ -47,7 +50,7 @@ public class Panel extends JPanel implements ActionListener, Runnable
         pearl.setFont(new Font("Serif", Font.BOLD, 40) );
         pearl.setBounds(610, 980, 100, 100);
        
-        
+  */      
         ImageIcon icon = new ImageIcon("Map.png");
         map = new JLabel(icon);
         map.setBackground(Color.BLACK);

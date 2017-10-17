@@ -26,7 +26,6 @@ import javax.swing.SwingConstants;
  *
  */
 public class Panel2 extends JPanel implements Runnable {
-	Player player = new Player();
 	JButton Button[] = new JButton[4];
 	private int countDown;
 	String[] data = new String[] { "North Hall", "South Hall" };
@@ -34,10 +33,19 @@ public class Panel2 extends JPanel implements Runnable {
 	JPanel buttonPanel = new JPanel();
 	DefaultListModel model = new DefaultListModel();
 	JList<String> options = new JList<String>(model);
+	
+	
 	// Map<String, ArrayList<String>> location = new HashMap<String,
 	// ArrayList<String>>();
 
 	public Panel2() {
+		
+		this.setBackground(Color.BLACK);
+        setLayout(new FlowLayout(FlowLayout.CENTER));
+        setFocusable(true);
+        Player gary = new Player("gary");
+        Player patrick = new Player("patrick");
+        Player pearl = new Player("pearl");
 
 		this.setBackground(Color.GREEN);
 		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
@@ -68,6 +76,7 @@ public class Panel2 extends JPanel implements Runnable {
 				new ArrayList<String>(Arrays.asList("South Hall", "Bratwurst Hall", "Forbidden Parking")));
 		location.put("Forbidden Parking", new ArrayList<String>(Arrays.asList("East Walkway")));
 		location.put("Rec Center", new ArrayList<String>(Arrays.asList("West Walkway")));
+		
 
 		// Hashmap of location and its coordinate
 		// data = new String[] { "South Hall" };
@@ -78,7 +87,7 @@ public class Panel2 extends JPanel implements Runnable {
 	//	JList<String> options = new JList<String>(model);
 		ButtonListener bl = new ButtonListener();
 		
-		
+	
 		// making button arrays
 		Button[0] = new JButton("Draw Card");
 		Button[0].setVisible(true);

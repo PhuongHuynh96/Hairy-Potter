@@ -14,8 +14,8 @@ public class Frame extends JFrame
     {
         setBounds(10, 10, 1250, 880);
         this.setLayout(new FlowLayout(FlowLayout.CENTER));
-        panel = new Panel();
-        getContentPane().add(panel);
+//        panel = new Panel();
+//        getContentPane().add(panel);
         Panel2 control = new Panel2();
         getContentPane().add(control);
 

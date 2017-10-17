@@ -7,11 +7,8 @@ public class Main
     {
         System.out.println("Welcome to the Game!");
         Frame startGame = new Frame();
-  /*      startGame.setExtendedState(Frame.MAXIMIZED_BOTH);
-        startGame.setUndecorated(true);
-        startGame.setVisible(true);
-        */
     }
 }
+
     
 

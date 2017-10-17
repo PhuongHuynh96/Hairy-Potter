@@ -156,6 +156,8 @@ public class Panel2 extends JPanel implements Runnable {
 				patrick.setLocation(patrick.getPossibleLocation()[rand1]);
 				pearl.setLocation(pearl.getPossibleLocation()[rand2]);
 				gary.movePlayer();
+				patrick.movePlayer();
+				pearl.movePlayer();
 				model.removeAllElements();
 				counter = 1;
 				

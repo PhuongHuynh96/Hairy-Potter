@@ -55,12 +55,25 @@ public class Player {
 		location.put("Forbidden Parking", new String[] {"East Walkway"});
         location.put("Rec Center", new String[] {"West Walkway"});
 
-        updateLocation.put("South Hall", new Point[] {new Point(610,800), new Point(610,870), new Point(610,850)});
-        updateLocation.put("ECS 308", new Point[] {new Point(610,930), new Point(610,1000), new Point(610,980)});
-        updateLocation.put("ECS 302", new Point[] {new Point(610,650), new Point(610,720), new Point(610,700)});
-        updateLocation.put("EAT Club", new Point[] {new Point(760,650), new Point(760,720), new Point(760,700)});
-        updateLocation.put("CECS Conference Room", new Point[] {new Point(760,820), new Point(760,890), new Point(760,870)});
-        updateLocation.put("North Hall", new Point[] {new Point(260,800), new Point(260,870), new Point(260,850)});
+        updateLocation.put("South Hall", new Point[] {new Point(610,800), new Point(610,870), new Point(610,840)});
+        updateLocation.put("ECS 308", new Point[] {new Point(610,930), new Point(610,1000), new Point(610,970)});
+        updateLocation.put("ECS 302", new Point[] {new Point(610,650), new Point(610,720), new Point(610,690)});
+        updateLocation.put("EAT Club", new Point[] {new Point(760,650), new Point(760,720), new Point(760,690)});
+        updateLocation.put("CECS Conference Room", new Point[] {new Point(900,650), new Point(900,720), new Point(900,690)});
+        updateLocation.put("North Hall", new Point[] {new Point(260,800), new Point(260,870), new Point(260,840)});
+        updateLocation.put("East Walkway", new Point[] {new Point(1070,800), new Point(1070,870), new Point(1070,840)});
+        updateLocation.put("Elevators", new Point[] {new Point(490,930), new Point(490,1000), new Point(490,970)});
+        updateLocation.put("Room of Retirement", new Point[] {new Point(290,930), new Point(290,1000), new Point(290,970)});
+        updateLocation.put("West Walkway", new Point[] {new Point(25,800), new Point(25,870), new Point(25,840)});
+        updateLocation.put("Library", new Point[] {new Point(100,1200), new Point(100,1270), new Point(100,1240)});
+        updateLocation.put("LA 5", new Point[] {new Point(500,1200), new Point(500,1270), new Point(500,1240)});
+        updateLocation.put("Bratwurst Hall", new Point[] {new Point(850,1200), new Point(850,1270), new Point(850,1240)});
+        updateLocation.put("Lactation Lounge", new Point[] {new Point(890,930), new Point(890,1000), new Point(890,970)});
+        updateLocation.put("Computer Lab", new Point[] {new Point(290,610), new Point(290,680), new Point(290,650)});
+        updateLocation.put("Rec Center", new Point[] {new Point(500,400), new Point(500,470), new Point(500,440)});
+        updateLocation.put("Forbidden Parking", new Point[] {new Point(900,350), new Point(900,420), new Point(900,390)});
+
+
         
 	}
     
@@ -90,6 +103,15 @@ public class Player {
             int y = (int) updateLocation.get(this.locale)[0].getY();
             character.setBounds(x,y,100,100);
         }
+        else if(name.equalsIgnoreCase("pearl")){
+        	int x = (int) updateLocation.get(this.locale)[2].getX();
+            int y = (int) updateLocation.get(this.locale)[2].getY();
+            character.setBounds(x,y,100,100);
+        }
+        else if(name.equalsIgnoreCase("patrick")){
+        	int x = (int) updateLocation.get(this.locale)[1].getX();
+            int y = (int) updateLocation.get(this.locale)[1].getY();
+            character.setBounds(x,y,100,100);
+        }
     }
-
 }

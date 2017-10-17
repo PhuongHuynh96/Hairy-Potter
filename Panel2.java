@@ -32,18 +32,20 @@ public class Panel2 extends JPanel implements Runnable {
 	public Panel2() {
 
 		this.setBackground(Color.GREEN);
-		this.setLayout(new FlowLayout(FlowLayout.CENTER));
-		setFocusable(true);
+		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		
 		gary = new Player("Gary");
 		patrick = new Player("Patrick");
 		pearl = new Player("Pearl");
+		
+
         
         ImageIcon icon = new ImageIcon("Map.png");
         map = new JLabel(icon);
         map.setBackground(Color.BLACK);
         JScrollPane jsp = new JScrollPane(map, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         jsp.setPreferredSize(new Dimension(1230,550));
+        jsp.getVerticalScrollBar().setUnitIncrement(16);
 		jsp.setViewportView(map);
 //		this.add(Box.createRigidArea(new Dimension(0,5)));
 		this.add(jsp);
@@ -56,6 +58,7 @@ public class Panel2 extends JPanel implements Runnable {
 
 		JPanel control = new JPanel();
 		control.setLayout(new BoxLayout(control, BoxLayout.Y_AXIS));
+		control.setPreferredSize(new Dimension(200,500));
 
 		options = new JList(model);
 
@@ -64,27 +67,25 @@ public class Panel2 extends JPanel implements Runnable {
 		// making button arrays
 		Button[0] = new JButton("Draw Card");
 		Button[0].setVisible(true);
-		Button[0].setMaximumSize(new Dimension(100,30));
-		Button[0].setHorizontalAlignment(SwingConstants.LEFT);
-		control.add(Button[0]);
 		
+
 		Button[1] = new JButton("Move");
 		Button[1].setVisible(true);
-		Button[1].setMaximumSize(new Dimension(100,30));
-		control.add(Button[1], BorderLayout.WEST);
 		Button[1].addActionListener(bl);
 
 		Button[2] = new JButton("Play Card");
 		Button[2].setVisible(true);
-		Button[2].setMaximumSize(new Dimension(100,30));
-		control.add(Button[2], BorderLayout.WEST);
 
-		this.add(control, BorderLayout.WEST);
-		control.setPreferredSize(new Dimension(200,500));
-		control.setVisible(true);
-		setVisible(true);
-		setPreferredSize(new Dimension(1200,500));
-		control.add(options, BorderLayout.AFTER_LAST_LINE);
+		control.add(Button[0],BorderLayout.WEST);
+		control.add(Button[1],BorderLayout.WEST);
+		control.add(Button[2],BorderLayout.WEST);
+//		control.setPreferredSize(new Dimension(100,30));
+//		control.setAlignmentX(Component.LEFT_ALIGNMENT);
+//		this.add(Box.createRigidArea(new Dimension(0,10)));
+		this.add(control);
+		control.add(options,BorderLayout.AFTER_LAST_LINE);
+//		this.add(Box.createRigidArea(new Dimension(0,200)));
+
 
 	}
 
@@ -101,6 +102,14 @@ public class Panel2 extends JPanel implements Runnable {
 	}
 
 	
+
+
+
+
+
+
+
+
 	@Override
 	public void run() {
 		while (countDown > 0) {

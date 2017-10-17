@@ -23,19 +23,19 @@ public class Player {
 		if (x.equalsIgnoreCase("Gary")){
             name = x;
             character.setForeground(Color.BLUE);
-            character.setFont(new Font("Serif", Font.BOLD, 40) );
+            character.setFont(new Font("Serif", Font.BOLD, 30) );
             character.setBounds(610, 930, 100, 100);
 		}
 		else if (x.equalsIgnoreCase("Patrick")){
             name=x;
 			 character.setForeground(Color.PINK);
-		     character.setFont(new Font("Serif", Font.BOLD, 40) );
+		     character.setFont(new Font("Serif", Font.BOLD, 30) );
 		     character.setBounds(610, 1000, 200, 200);
 		}
 		else if(x.equalsIgnoreCase("Pearl")){
             name=x;
 	        character.setForeground(Color.DARK_GRAY);
-	        character.setFont(new Font("Serif", Font.BOLD, 40) );
+	        character.setFont(new Font("Serif", Font.BOLD, 30) );
 	        character.setBounds(610, 980, 100, 100);
         }
         

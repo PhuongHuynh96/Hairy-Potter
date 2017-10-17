@@ -38,7 +38,7 @@ public class Player {
         }
         
         location.put("ECS 308", new String[] {"South Hall"});
-		location.put("South Hall", new String[] {"ECS 302","EAT Club","CECS Conference Room","East Walkway"});
+		location.put("South Hall", new String[] {"ECS 302","EAT Club","CECS Conference Room","East Walkway","North Hall"});
 		location.put("Lactation Lounge", new String[] {"South Hall"});
 		location.put("CECS Conference Room", new String[] {"South Hall"});
 		location.put("EAT Club", new String[] {"South Hall"});
@@ -55,7 +55,12 @@ public class Player {
 		location.put("Forbidden Parking", new String[] {"East Walkway"});
         location.put("Rec Center", new String[] {"West Walkway"});
 
-        updateLocation.put("South Hall", new Point[] {new Point(100,250), new Point(500,1200), new Point(800,100)});
+        updateLocation.put("South Hall", new Point[] {new Point(610,800), new Point(610,870), new Point(610,850)});
+        updateLocation.put("ECS 308", new Point[] {new Point(610,930), new Point(610,1000), new Point(610,980)});
+        updateLocation.put("ECS 302", new Point[] {new Point(610,650), new Point(610,720), new Point(610,700)});
+        updateLocation.put("EAT Club", new Point[] {new Point(760,650), new Point(760,720), new Point(760,700)});
+        updateLocation.put("CECS Conference Room", new Point[] {new Point(760,820), new Point(760,890), new Point(760,870)});
+        updateLocation.put("North Hall", new Point[] {new Point(260,800), new Point(260,870), new Point(260,850)});
         
 	}
     

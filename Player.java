@@ -79,6 +79,7 @@ public class Player {
         updateLocation.put("Forbidden Parking", new Point[] {new Point(900,350), new Point(900,420), new Point(900,390)});
 
 
+
         
 	}
     

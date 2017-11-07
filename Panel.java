@@ -1,6 +1,5 @@
 package hairyPotter;
 
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -15,6 +14,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+/**
+ * Map and redrawing of players
+ * 
+ * @author Phuong Huynh
+ *
+ */
 public class Panel extends JPanel {
 
 	private BufferedImage map;
@@ -30,7 +35,7 @@ public class Panel extends JPanel {
 		try {
 			map = ImageIO.read(new File("src/Map.png"));
 		} catch (IOException e) {
-			System.out.println("Hi");
+			e.printStackTrace();
 		}
 
 		this.setPreferredSize(new Dimension(map.getWidth(), map.getHeight()));

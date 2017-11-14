@@ -3,12 +3,25 @@ package hairyPotter;
 public class CardHoffman extends Card{
 
 	private String cardPath;
+	private boolean passFail;
 	public CardHoffman(){
 			cardPath = "assets/images/CardHoffman.png";
 	}
 	
 	public String getCardPath(){
 		return cardPath;
+	}
+	
+	@Override
+	public String playLine(Player p){
+		String line = "played card Professor Hoffman for 5 quality points and 2 game cards and passed";
+		String fail= "played card Professor Hoffman for 5 quality points and 2 game cards and failed";
+		if (passFail = true){
+			return line;
+		}
+		else
+			return fail;
+		
 	}
 
 	@Override
@@ -21,12 +34,14 @@ public class CardHoffman extends Card{
 			//get 2 game cards
 			p.addCards(d.dealDeck());
 			p.addCards(d.dealDeck());
+			passFail=true;
 		}
 		else{
 			p.decrQuality(2);
 			p.decrQuality(5);
 			p.setLocation("Lactation Lounge");
 			p.movePlayer();
+			passFail=false;
 		}
 	}
 	

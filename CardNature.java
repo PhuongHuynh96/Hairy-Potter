@@ -3,12 +3,25 @@ package hairyPotter;
 public class CardNature extends Card{
 
 	private String cardPath;
+	private boolean passFail;
 	public CardNature(){
 			cardPath = "assets/images/CardNature.png";
 	}
 	
 	public String getCardPath(){
 		return cardPath;
+	}
+	
+	@Override
+	public String playLine(Player p){
+		String line = "played card Enjoying Nature for 1 craft point and passed";
+		String fail= "played card Enjoying Nature for 1 craft point and failed";
+		if (passFail = true){
+			return line;
+		}
+		else
+			return fail;
+		
 	}
 
 	@Override
@@ -21,9 +34,11 @@ public class CardNature extends Card{
 			p.incrCraft(1);
 			p.setLocation("Lactation Lounge");
 			p.movePlayer();
+			passFail=true;
 		}
 		else{
 			p.decrQuality(2);
+			passFail=false;
 		}
 	}
 	

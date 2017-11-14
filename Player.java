@@ -67,8 +67,13 @@ public class Player {
 		location.put("LA 5", new String[] { "Elevators" });
 		location.put("Bratwurst Hall", new String[] { "East Walkway" });
 		location.put("East Walkway", new String[] { "South Hall", "Bratwurst Hall", "Forbidden Parking" });
-		location.put("Forbidden Parking", new String[] { "East Walkway" });
-		location.put("Rec Center", new String[] { "West Walkway" });
+		location.put("Forbidden Parking", new String[] {"East Walkway", "Rec Center", "Student Parking"});
+        location.put("Rec Center", new String[] {"West Walkway", "Pyramid", "George Allen Field", "Student Parking", "Forbidden Parking"});
+		location.put("Student Parking", new String[] {"Forbidden Parking", "Rec Center", "Pyramid", "Japanese Garden"});
+		location.put("Japanese Garden", new String[] {"Student Parking", "George Allen Field", "Pyramid"});
+		location.put("Pyramid", new String[] {"Student Parking", "George Allen Field", "Japanese Garden", "Rec Center"});
+		location.put("George Allen Field", new String[] {"West Walkway", "Japanese Garden", "Pyramid", "Rec Center"});
+
 
 		updateLocation.put("South Hall", new Point[] { new Point(610, 800), new Point(610, 870), new Point(610, 840) });
 		updateLocation.put("ECS 308", new Point[] { new Point(610, 930), new Point(610, 1000), new Point(610, 970) });
@@ -153,6 +158,10 @@ public class Player {
 	
 	//get cards at a certain position
 	public Card getCardAt(int index){
+		if (index== -1){
+			return cards.get(0);
+		}
+		else
 		return cards.get((index));
 	}
 	

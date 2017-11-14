@@ -13,7 +13,7 @@ import java.util.*;
  *
  */
 public class Panel2 extends JPanel implements Runnable {
-	private int countDown;
+	private int countDown = 1;
 	String[] data;
 
 	private int cardShift = 0;
@@ -22,7 +22,11 @@ public class Panel2 extends JPanel implements Runnable {
 	private JList options;
 	private DefaultListModel model = new DefaultListModel();
 	private int counter = 1;
+	private JTextArea text2;
+	private JTextArea text1;
+	private JPanel textHolder;
 	private Panel panel;
+	private JPanel boss;
 	private Deck deck = new Deck();
 	private ImageIcon active = new ImageIcon();
 	private int moveCount = 0;
@@ -38,17 +42,19 @@ public class Panel2 extends JPanel implements Runnable {
 		pearl = new Player("Pearl");
 
 		// initializes the deck and array
-		//each player has 5 cards 
+		// each player has 5 cards
 
 		deck.resetDeck();
-		for (int i = 0; i < 5; i++){
+		for (int i = 0; i < 5; i++) {
 			gary.addCards(deck.dealDeck());
 			patrick.addCards(deck.dealDeck());
 			pearl.addCards(deck.dealDeck());
 		}
-		
-		
-		
+
+		// checks if deck is empty
+		if (deck.cardsLeft() <= 0) {
+			deck.resetDeck();
+		}
 
 		// visual constraints of the players
 		panel = new Panel(gary, patrick, pearl);
@@ -68,7 +74,7 @@ public class Panel2 extends JPanel implements Runnable {
 		this.add(jsp, c);
 
 		// main panel that others are added into
-		JPanel boss = new JPanel();
+		boss = new JPanel();
 		boss.setLayout(new FlowLayout());
 		boss.setAlignmentX(Component.LEFT_ALIGNMENT);
 		boss.setAlignmentY(Component.LEFT_ALIGNMENT);
@@ -80,14 +86,18 @@ public class Panel2 extends JPanel implements Runnable {
 		JPanel cardButton = new JPanel();
 
 		// Creating JTextArea
-		JTextArea text1 = new JTextArea(100, 20);
-		JTextArea text2 = new JTextArea(50, 1);
-		JPanel textHolder = new JPanel();
+		text1 = new JTextArea(100, 20);
+		text2 = new JTextArea(50, 1);
+		textHolder = new JPanel();
 		textHolder.setLayout(new BoxLayout(textHolder, BoxLayout.Y_AXIS));
 		text1.setEditable(false);
 		text2.setEditable(false);
-		text1.append("Nith says hi");
-		text2.append("Nith says bye");
+		text1.setText("\t\tLearning\tCraft\tIntegrity\tQuality Points\nGary\t\t" + gary.getLearning() + "\t" + gary.getCraft() + "\t" + gary.getIntegrity()
+				+ "\t" + gary.getQuality() + "\nPatrick\t\t" + patrick.getLearning() + "\t" + patrick.getCraft() + "\t"
+				+ patrick.getIntegrity() + "\t" + patrick.getQuality() + "\nPearl\t\t" + pearl.getLearning() + "\t" + pearl.getCraft() + "\t" + pearl.getIntegrity()
+				+ "\t" + pearl.getQuality()+"\nCards in Deck: "+deck.cardsLeft()+"\t\tDiscards out of play: "+deck.getDiscardCount()
+				+"\nGary is currently playing"+"\nGary is in room: "+gary.getLocation());
+		text2.setText("Human player is Gary");
 
 		control.setLayout(new BoxLayout(control, BoxLayout.Y_AXIS));
 		cardButton.setLayout(new FlowLayout());
@@ -130,7 +140,7 @@ public class Panel2 extends JPanel implements Runnable {
 		Button[3] = new JButton();
 		Button[3].setIcon(active);
 		Button[3].addActionListener(b3);
-		Button[3].setPreferredSize(new Dimension(150, 250));
+		Button[3].setPreferredSize(new Dimension(170, 270));
 		cardButton.add(Button[3]);
 
 		control.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -184,12 +194,11 @@ public class Panel2 extends JPanel implements Runnable {
 		public void actionPerformed(ActionEvent e) {
 			// move player on map
 			if (e.getSource() == Button[1]) {
-				if (moveCount++ >= 3){
-					if(isPlay){
-						moveCount=0;
+				if (moveCount++ >= 3) {
+					if (isPlay) {
+						moveCount = 0;
 					}
-				}
-				else{
+				} else {
 					gary.setLocation(options.getSelectedValue().toString());
 					int rand1 = 0 + (int) (Math.random() * patrick.getPossibleLocation().length - 1);
 					int rand2 = 0 + (int) (Math.random() * pearl.getPossibleLocation().length - 1);
@@ -199,22 +208,51 @@ public class Panel2 extends JPanel implements Runnable {
 					updateList(gary.getPossibleLocation());
 					panel.repaint();
 					counter = 1;
-					isPlay=false;
+					isPlay = false;
+					text1.setText("\t\tLearning\tCraft\tIntegrity\tQuality Points\nGary\t\t" + gary.getLearning() + "\t" + gary.getCraft() + "\t" + gary.getIntegrity()
+					+ "\t" + gary.getQuality() + "\nPatrick\t\t" + patrick.getLearning() + "\t" + patrick.getCraft() + "\t"
+					+ patrick.getIntegrity() + "\t" + patrick.getQuality() + "\nPearl\t\t" + pearl.getLearning() + "\t" + pearl.getCraft() + "\t" + pearl.getIntegrity()
+					+ "\t" + pearl.getQuality()+"\nCards in Deck: "+deck.cardsLeft()+"\t\tDiscards out of play: "+deck.getDiscardCount()
+					+"\nGary is currently playing"+" Gary is in room: "+gary.getLocation());
+					boss.repaint();
 				}
-				
+
 			}
 
 			// draw Card
 			if (e.getSource() == Button[0]) {
 				gary.addCards(deck.dealDeck());
 				deck.cardsLeft();
-				
+
 			}
 			// play card
 			if (e.getSource() == Button[2]) {
-				isPlay=true;
+				isPlay = true;
 				deck.incrDiscard();
 				gary.getCardAt((cardShift)-1).play(gary, deck);
+				gary.removeCard(gary.getCardAt((cardShift)-1));
+				
+				//computer always plays first card in hand
+				pearl.getCardAt(0).play(pearl, deck);
+				patrick.getCardAt(0).play(patrick, deck);
+				
+				//computer removes card from hand that they played
+				pearl.removeCard(pearl.getCardAt(0));
+				patrick.removeCard(patrick.getCardAt(0));
+				
+				//computer draws new card
+				pearl.addCards(deck.dealDeck());
+				patrick.addCards(deck.dealDeck());
+				
+				//display new points
+				text1.setText("\t\tLearning\tCraft\tIntegrity\tQuality Points\nGary\t\t" + gary.getLearning() + "\t" + gary.getCraft() + "\t" + gary.getIntegrity()
+				+ "\t" + gary.getQuality() + "\nPatrick\t\t" + patrick.getLearning() + "\t" + patrick.getCraft() + "\t"
+				+ patrick.getIntegrity() + "\t" + patrick.getQuality() + "\nPearl\t\t" + pearl.getLearning() + "\t" + pearl.getCraft() + "\t" + pearl.getIntegrity()
+				+ "\t" + pearl.getQuality()+"\nCards in Deck: "+deck.cardsLeft()+"\t\tDiscards out of play: "+deck.getDiscardCount()
+				+"\nGary is currently playing"+" Gary is in room: "+gary.getLocation());
+				text2.setText("Gary "+gary.getCardAt((cardShift) -1).playLine(gary)+"\nPearl "+pearl.getCardAt(0).playLine(pearl)
+						+"\nPatrick "+patrick.getCardAt(0).playLine(patrick));
+				boss.repaint();
 			}
 
 			// button that makes cards user has in hand move/update
@@ -222,11 +260,10 @@ public class Panel2 extends JPanel implements Runnable {
 				if (cardShift++ > gary.getCardSize()) {
 					cardShift = 0;
 					active = new ImageIcon(gary.getCardAt(0).getCardPath());
+				} else {
+					active = new ImageIcon(gary.getCardAt((cardShift) - 1).getCardPath());
 				}
-				else{
-					active = new ImageIcon(gary.getCardAt((cardShift)-1).getCardPath());
-				}
-				
+
 				Button[3].setIcon(active);
 
 			}
